@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Scraper</title>
+</head>
+<body>
+<h1>Web Scraper</h1>
+<form method="POST">
+    <label for="url">Enter URL:</label>
+    <input type="text" id="url" name="url" required><br><br>
+
+    <label for="content_type">Select Content to Scrape:</label>
+    <select id="content_type" name="content_type" required>
+        <option value="title">Title</option>
+        <option value="headers">Headers</option>
+        <option value="links">Links</option>
+        <option value="images">Images</option>
+        <option value="meta_description">Meta Description</option>
+        <option value="paragraphs">Paragraphs</option>
+        <option value="links_with_text">Links with Text</option>
+        <option value="images_with_alt">Images with Alt Text</option>
+        <option value="lists">Lists</option>
+    </select><br><br>
+
+    <button type="submit">Scrape</button>
+</form>
+
+{% if scraped_content %}
+<h2>Scraped Content:</h2>
+<pre>{{ scraped_content }}</pre>
+
+{% if file_path %}
+<a href="{{ url_for('download_file', file=file_path) }}">
+    <button>Download Scraped Content</button>
+</a>
+{% endif %}
+{% endif %}
+</body>
+</html>
